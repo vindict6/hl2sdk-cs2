@@ -329,6 +329,9 @@ private:
 	// Be sure to call ConvertToCopiedData() when required
 	void Set( fieldtype_t ftype, void *pData );
 
+public:
+	// Public for consumers that read/write the raw value (CounterStrikeSharp's
+	// natives_cvariant.cpp). Access only; the layout is unchanged.
 	union
 	{
 		uint8 m_uint8;
