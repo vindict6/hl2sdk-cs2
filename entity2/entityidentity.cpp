@@ -1,0 +1,16 @@
+#include "entityidentity.h"
+#include "gameentitysystem.h"
+#include "tier0/tier0_strtools.h"
+
+bool CEntityIdentity::NameMatches( const char* pszNameOrWildcard ) const
+{
+	if ( pszNameOrWildcard && pszNameOrWildcard[0] == '!' )
+		return GameEntitySystem()->FindEntityProcedural( pszNameOrWildcard ) == m_pInstance;
+
+	return V_CompareNameWithWildcards( pszNameOrWildcard, m_name.String() ) == 0;
+}
+
+bool CEntityIdentity::ClassMatches( const char* pszClassOrWildcard ) const
+{
+	return V_CompareNameWithWildcards( pszClassOrWildcard, m_designerName.String() ) == 0;
+}
